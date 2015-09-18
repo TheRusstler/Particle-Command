@@ -1,40 +1,37 @@
 final class Particle {
   
   public final PVector position, velocity, gravity;
-  private float invMass;
+  public final float diameter;
   
   Particle(int x, int y, float xVel, float yVel, float diameter) {
-    position = new PVector(x, y);
-    velocity = new PVector(xVel, yVel);
-    invMass = 1/diameter;
-    gravity = new PVector(0f, 0.01f);
+    this.position = new PVector(x, y);
+    this.velocity = new PVector(xVel, yVel);
+    this.gravity = new PVector(0f, 0.002f);
+    this.diameter = diameter;
   }
   
   void integrate() {
     
-    // If infinite mass, we don't integrate
-    if (invMass <= 0f) { 
-      return;
-    }
-    
+    // TODO: remove
     // Stop at ground level
-    if(position.y + getDiameter() / 2 >= height - 5) {
+    if(position.y + diameter / 2 >= height - 5) {
       return;
     }
     
-    // Inertia
+    // Motion
     position.add(velocity);
     
-    // Gravity
+    applyGravity();
+    applyDrag();
+  }
+  
+  void applyGravity() {
     PVector acceleration = gravity.get();
     float distance = height - position.y; 
-    //acceleration.mult(distance/10);
-    
-    // update velocity
     velocity.add(acceleration);
   }
   
-  float getDiameter() {
-    return 1/invMass;
+  void applyDrag() {
+    velocity.mult(.999f);
   }
 }

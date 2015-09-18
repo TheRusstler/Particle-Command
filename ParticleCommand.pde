@@ -1,10 +1,9 @@
-// Global vars: 
 Particle[] particles;
-int waveSize = 5;
+int waveSize = 20;
 
 void setup() {
   size(displayWidth/2, displayHeight/2);
-  particles = getWave(5);
+  particles = getWave(waveSize);
 }
 
 void draw() {
@@ -14,22 +13,34 @@ void draw() {
 }
 
 void drawParticles() {
-  for(int i=0; i<particles.length; i++) {
+  for(int i=0; i<waveSize; i++) {
     Particle p = particles[i];
     p.integrate();
-    ellipse(p.position.x, p.position.y, p.getDiameter(), p.getDiameter());
+    ellipse(p.position.x, p.position.y, p.diameter, p.diameter);
   }
 }
 
 Particle[] getWave(int size) {
   Particle[] particles = new Particle[size];
+  
   for(int i=0; i<waveSize; i++) {
-    particles[i] = new Particle((int)random(width/4, width*3/4), 
-                                  -10, 
-                                  random(-1f, 1f), 
-                                  random(0, 2f), 
-                                  random(10, 50));
+    int xStart = (int)random(0, width);
+    float xVelocity = random(0, 1f);
+    
+    // Particles starting at the left/right of the screen
+    // should have a positive/negative velocity respectively.
+    if(xStart < width/2 && xVelocity < 0 || xStart > width/2 && xVelocity > 0) {
+      xVelocity *= -1;
+    }
+    
+    particles[i] = new Particle(xStart, 
+                                (int)random(-500, -20), 
+                                //20,
+                                xVelocity, 
+                                random(0, 1f), 
+                                random(2, 8));
   }
+  
   return particles;
 }
 
