@@ -1,37 +1,42 @@
-final class Particle {
+class Particle 
+{
   
-  public final PVector position, velocity, gravity;
-  public final float diameter;
+  final PVector position, velocity, gravity;
+  final float diameter;
   
-  Particle(int x, int y, float xVel, float yVel, float diameter) {
+  boolean stopped;
+  
+  Particle(int x, int y, float xVel, float yVel, float diameter) 
+  {
     this.position = new PVector(x, y);
     this.velocity = new PVector(xVel, yVel);
     this.gravity = new PVector(0f, 0.002f);
     this.diameter = diameter;
   }
   
-  void integrate() {
-    
-    // TODO: remove
-    // Stop at ground level
-    if(position.y + diameter / 2 >= height - 5) {
+  void integrate() 
+  {
+    if(stopped || position.y + diameter / 2 >= height - 5) 
+    {
+      stopped = true;
       return;
     }
     
-    // Motion
     position.add(velocity);
     
     applyGravity();
     applyDrag();
   }
   
-  void applyGravity() {
+  void applyGravity() 
+  {
     PVector acceleration = gravity.get();
     float distance = height - position.y; 
     velocity.add(acceleration);
   }
   
-  void applyDrag() {
+  void applyDrag() 
+  {
     velocity.mult(.999f);
   }
 }
