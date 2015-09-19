@@ -83,7 +83,11 @@ void mousePressed()
       break;
       
     case InRound:
-      round.missiles.add(new Missile(mouseX, mouseY));
+      if(round.missilesRemaining > 0)
+      {
+        round.missiles.add(new Missile(mouseX, mouseY));
+        round.missilesRemaining--;
+      }
       break;
       
     case BetweenRounds:
