@@ -3,53 +3,46 @@ class Round
   final int roundOneParticles = 10;
   final int particleIncreasePerRound = 5;
   
-  int number;
-  Particle[] particles;
-  City[] cities;
+  int number, missiles;
+  ArrayList<Particle> particles;
+  ArrayList<City> cities;
   
   public Round(int number) 
   {
     this.number = number;
+    this.missiles = 20;
     this.cities = getCities();
     
     int numberOfParticles = roundOneParticles + (number-1) * particleIncreasePerRound;
     this.particles = getParticles(numberOfParticles);
   }
   
-  boolean isComplete() 
+  void update()
   {
-    boolean complete = true;
-    
-    for(Particle p : particles) 
+    for(Particle p : particles)
     {
-      if(p.stopped == false) 
-      {
-        complete = false;
-        break;
-      }
+      p.integrate();
     }
-    
-    return complete;
   }
-  
-  City[] getCities() 
+ 
+  ArrayList<City> getCities() 
   {
-    City[] cities = new City[2];
-    cities[0] = new City();
-    cities[1] = new City();
+    ArrayList<City> cities = new ArrayList<City>();
+    cities.add(new City());
+    cities.add(new City());
     return cities;
   }
   
-  Particle[] getParticles(int particleCount) 
+  ArrayList<Particle> getParticles(int particleCount) 
   {
-    Particle[] particles = new Particle[particleCount];
+    ArrayList<Particle> particles = new ArrayList<Particle>();
     
     for(int i=0; i<particleCount; i++) 
     {
       int xStart = (int)random(0, width);
       int yStart = (int)random(-400, -20);
       float xVelocity = random(0, 1f);
-      float yVelocity = random(0, 1f);
+      float yVelocity = random(0, 2f);
       float diameter = random(2, 8);
       
       // Choose xVelocity direction according to starting half of screen
@@ -58,7 +51,7 @@ class Round
         xVelocity *= -1;
       }
       
-      particles[i] = new Particle(xStart, yStart, xVelocity, yVelocity, diameter);
+      particles.add(new Particle(xStart, yStart, xVelocity, yVelocity, diameter));
     }
     
     return particles;

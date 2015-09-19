@@ -1,6 +1,7 @@
 enum GameState 
 { 
   NotStarted, 
-  Started,
-  Over 
+  InRound,
+  BetweenRounds,
+  Over
 }

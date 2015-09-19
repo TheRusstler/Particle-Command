@@ -1,10 +1,7 @@
 class Particle 
 {
-  
   final PVector position, velocity, gravity;
   final float diameter;
-  
-  boolean stopped;
   
   Particle(int x, int y, float xVel, float yVel, float diameter) 
   {
@@ -15,15 +12,8 @@ class Particle
   }
   
   void integrate() 
-  {
-    if(stopped || position.y + diameter / 2 >= height - 5) 
-    {
-      stopped = true;
-      return;
-    }
-    
-    position.add(velocity);
-    
+  { 
+    position.add(velocity); 
     applyGravity();
     applyDrag();
   }
@@ -38,5 +28,10 @@ class Particle
   void applyDrag() 
   {
     velocity.mult(.999f);
+  }
+  
+  boolean isBelowScreen() 
+  {
+    return position.y + diameter / 2 >= height - 5;
   }
 }

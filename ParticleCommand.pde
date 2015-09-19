@@ -6,42 +6,15 @@ void setup()
   game = new Game();
 }
 
-void draw()
-{
-  background(128);
+void draw(){
+  background(0);
   game.update();
-  
-  if(game.state == GameState.Started) 
-  {
-    drawParticles();
-    drawStats();
-  }
 }
 
-void drawParticles() {
-  for(int i=0; i<game.round.particles.length; i++) 
-  {
-    Particle p = game.round.particles[i];
-    
-    if(p.stopped == false) 
-    {
-      p.integrate();
-      ellipse(p.position.x, p.position.y, p.diameter, p.diameter);
-    }
-  }
-}
-
-void drawStats() 
+void mousePressed()
 {
-  text("Round: " + game.round.number, 0, 10);
-}
-
-
-void mousePressed() 
-{
-    game.newGame();
+  game.start();
 }
 
 void mouseReleased() 
-{
-}
+{}

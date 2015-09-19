@@ -1,23 +1,40 @@
 import processing.core.*; 
+import java.util.*;
 
 class Game
 {
   GameState state = GameState.NotStarted;
   Round round;
+  int points;
   
-  Particle[] particles = new Particle[0];
+  Visualise visualise = new Visualise();
   
-  void newGame() 
+  void start() 
   {
-    state = GameState.Started;
+    points = 0;
     round = new Round(1);
+    state = GameState.InRound;
   }
   
   void update() 
   {
-    if(state == GameState.Started && round.isComplete()) 
+    switch(state)
     {
-      state = GameState.Over;
+      case NotStarted:
+        break;
+        
+      case InRound:
+        round.update();
+        visualise.particles(round.particles);
+        visualise.statistics(round.number, points, round.missiles);
+        break;
+        
+      case BetweenRounds:
+        visualise.roundStart(round.number);
+        break;
+        
+      case Over:
+        break;
     }
   }
 }
