@@ -4,6 +4,7 @@ void setup()
 {
   size(800, 600);
   game = new Game();
+  game.start();
 }
 
 void draw(){
@@ -12,9 +13,7 @@ void draw(){
 }
 
 void mousePressed()
-{
-  game.start();
-}
+{}
 
 void mouseReleased() 
 {}

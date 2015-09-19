@@ -3,17 +3,19 @@ import java.util.*;
 
 class Game
 {
-  Visualise visualise = new Visualise();
+  final int delayBetweenRounds = 180;
   
-  GameState state = GameState.NotStarted;
+  Visualise visualise = new Visualise();
+  GameState state     = GameState.NotStarted;
   Round round;
-  int points;
+  int points, timer = 0;
   
   void start() 
   {
     points = 0;
-    round = new Round(1);
-    state = GameState.InRound;
+    round = new Round(0);
+    state = GameState.BetweenRounds;
+    timer = delayBetweenRounds;
   }
   
   void update() 
@@ -30,11 +32,32 @@ class Game
         break;
         
       case BetweenRounds:
-        visualise.roundStart(round.number);
+        visualise.roundStart(round.number + 1);
+        betweenRoundsTimer();
         break;
         
       case Over:
         break;
     }
+  }
+  
+  void betweenRoundsTimer()
+  {
+    timer--;
+    if(timer == 0) 
+    {
+      startNextRound();
+    }
+  }
+  
+  void endRound()
+  {
+    
+  }
+  
+  void startNextRound()
+  {
+    round = new Round(round.number + 1);
+    state = GameState.InRound;
   }
 }

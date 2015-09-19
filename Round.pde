@@ -43,7 +43,7 @@ class Round
       int yStart = (int)random(-400, -20);
       float xVelocity = random(0, 1f);
       float yVelocity = random(0, 2f);
-      float diameter = random(2, 8);
+      float diameter = random(2, 25);
       
       // Choose xVelocity direction according to starting half of screen
       if(xStart < width/2 && xVelocity < 0 || xStart > width/2 && xVelocity > 0) 
