@@ -3,11 +3,11 @@ import java.util.*;
 
 class Game
 {
+  Visualise visualise = new Visualise();
+  
   GameState state = GameState.NotStarted;
   Round round;
   int points;
-  
-  Visualise visualise = new Visualise();
   
   void start() 
   {

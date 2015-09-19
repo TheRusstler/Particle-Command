@@ -1,3 +1,6 @@
+
+// Visualise class draws entities on screen
+
 class Visualise 
 {
   void particles(ArrayList<Particle> particles)
@@ -10,9 +13,9 @@ class Visualise
   
   void statistics(int round, int points, int missiles)
   {
-    text("Round: " + round, 0, 10);
-    text("Points: " + points, 0, 20);
-    text("Missiles: " + missiles, 0, 30);
+    text("Round: " + round, 10, 20);
+    text("Points: " + points, 10, 40);
+    text("Missiles: " + missiles, 10, 60);
   }
   
   void roundStart(int round)
