@@ -1,3 +1,4 @@
+// Round compromises a number of particles and missiles
 class Round 
 {
   final int roundOneParticles = 10;
@@ -5,13 +6,11 @@ class Round
   
   int number, missiles;
   ArrayList<Particle> particles;
-  ArrayList<City> cities;
   
   public Round(int number) 
   {
     this.number = number;
     this.missiles = 20;
-    this.cities = getCities();
     
     int numberOfParticles = roundOneParticles + (number-1) * particleIncreasePerRound;
     this.particles = getParticles(numberOfParticles);
@@ -24,20 +23,12 @@ class Round
       p.integrate();
     }
   }
- 
-  ArrayList<City> getCities() 
-  {
-    ArrayList<City> cities = new ArrayList<City>();
-    cities.add(new City());
-    cities.add(new City());
-    return cities;
-  }
   
-  ArrayList<Particle> getParticles(int particleCount) 
+  ArrayList<Particle> getParticles(int numberOfParticles) 
   {
     ArrayList<Particle> particles = new ArrayList<Particle>();
     
-    for(int i=0; i<particleCount; i++) 
+    for(int i=0; i<numberOfParticles; i++) 
     {
       int xStart = (int)random(0, width);
       int yStart = (int)random(-400, -20);

@@ -1,6 +1,7 @@
 import processing.core.*; 
 import java.util.*;
 
+// Game compromises a number of rounds (levels)
 class Game
 {
   final int delayBetweenRounds = 180;
@@ -8,11 +9,13 @@ class Game
   Visualise visualise = new Visualise();
   GameState state     = GameState.NotStarted;
   Round round;
-  int points, timer = 0;
+  int points, timer   = 0;
+  ArrayList<City> cities;
   
   void start() 
   {
     points = 0;
+    cities = createCities();
     round = new Round(0);
     state = GameState.BetweenRounds;
     timer = delayBetweenRounds;
@@ -50,14 +53,23 @@ class Game
     }
   }
   
-  void endRound()
+  void roundComplete()
   {
-    
+    state = GameState.BetweenRounds;
+    timer = delayBetweenRounds;
   }
   
   void startNextRound()
   {
     round = new Round(round.number + 1);
     state = GameState.InRound;
+  }
+  
+  ArrayList<City> createCities() 
+  {
+    ArrayList<City> cities = new ArrayList<City>();
+    cities.add(new City());
+    cities.add(new City());
+    return cities;
   }
 }

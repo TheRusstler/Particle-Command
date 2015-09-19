@@ -13,7 +13,9 @@ void draw(){
 }
 
 void mousePressed()
-{}
+{
+  game.roundComplete();
+}
 
 void mouseReleased() 
 {}
