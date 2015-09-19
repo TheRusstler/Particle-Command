@@ -31,7 +31,8 @@ void draw()
     case InRound:
       round.update();
       visualise.particles(round.particles);
-      visualise.statistics(round.number, points, round.missiles);
+      visualise.missiles(round.missiles);
+      visualise.statistics(round.number, points, round.missilesRemaining);
       visualise.crosshair();
       break;
       
@@ -47,11 +48,11 @@ void draw()
 
 void betweenRoundsTimer()
 {
-  timer--;
   if(timer == 0) 
   {
     startNextRound();
   }
+  timer--;
 }
 
 void roundComplete()
@@ -76,6 +77,22 @@ ArrayList<City> createCities()
 
 void mousePressed()
 {
+    switch(state)
+  {
+    case NotStarted:
+      break;
+      
+    case InRound:
+      round.missiles.add(new Missile(mouseX, mouseY));
+      break;
+      
+    case BetweenRounds:
+      timer = 0;
+      break;
+      
+    case Over:
+      break;
+  }
 }
 
 void mouseReleased() 

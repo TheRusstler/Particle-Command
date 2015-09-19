@@ -13,8 +13,20 @@ class Visualise
     }
   }
   
+  void missiles(ArrayList<Missile> missiles)
+  {
+    stroke(255, 0, 0);
+    fill(255, 0, 0);
+    for(Missile m : missiles)
+    {
+      ellipse(m.position.x, m.position.y, m.diameter, m.diameter);
+    }
+  }
+  
   void statistics(int round, int points, int missiles)
   {
+    stroke(0, 255, 0);
+    fill(0, 255, 0);
     text("Round: " + round, 10, 20);
     text("Points: " + points, 10, 40);
     text("Missiles: " + missiles, 10, 60);
@@ -22,6 +34,8 @@ class Visualise
   
   void betweenRounds(int round)
   {
+    stroke(0, 255, 0);
+    fill(0, 255, 0);
     text("Round " + round, width/2 - 20, height/2 - 5);
   }
   

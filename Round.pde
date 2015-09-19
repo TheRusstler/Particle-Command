@@ -1,16 +1,19 @@
 // Round compromises a number of particles and missiles
 class Round 
 {
+  final static int INITIAL_MISSILES = 10;
   final static int INITIAL_PARTICLES = 10;
   final static int ROUND_PARTICLE_INCREASE = 5;
   
-  int number, missiles;
+  int number, missilesRemaining;
   ArrayList<Particle> particles;
+  ArrayList<Missile> missiles;
   
   public Round(int number) 
   {
     this.number = number;
-    this.missiles = 20;
+    this.missilesRemaining = INITIAL_MISSILES;
+    this.missiles = new ArrayList<Missile>();
     
     int numberOfParticles = INITIAL_PARTICLES + (number-1) * ROUND_PARTICLE_INCREASE;
     this.particles = getParticles(numberOfParticles);
@@ -21,6 +24,11 @@ class Round
     for(Particle p : particles)
     {
       p.integrate();
+    }
+    
+    for(Missile m : missiles)
+    {
+      m.integrate();
     }
   }
   
