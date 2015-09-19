@@ -1,8 +1,10 @@
 Game game;
+Visualise visualise = new Visualise();
 
 void setup()
 {
   size(800, 600);
+  noCursor();
   game = new Game();
   game.start();
 }
@@ -14,7 +16,6 @@ void draw(){
 
 void mousePressed()
 {
-  game.roundComplete();
 }
 
 void mouseReleased() 

@@ -1,5 +1,7 @@
 class Particle 
 {
+  final static float DRAG = .999f;
+  
   final PVector position, velocity, gravity;
   final float diameter;
   
@@ -14,20 +16,8 @@ class Particle
   void integrate() 
   { 
     position.add(velocity); 
-    applyGravity();
-    applyDrag();
-  }
-  
-  void applyGravity() 
-  {
-    PVector acceleration = gravity.get();
-    float distance = height - position.y; 
-    velocity.add(acceleration);
-  }
-  
-  void applyDrag() 
-  {
-    velocity.mult(.999f);
+    velocity.add(gravity);
+    velocity.mult(DRAG);
   }
   
   boolean isBelowScreen() 

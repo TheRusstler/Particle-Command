@@ -1,12 +1,10 @@
-import processing.core.*; 
 import java.util.*;
 
 // Game compromises a number of rounds (levels)
 class Game
 {
-  final int delayBetweenRounds = 180;
-  
-  Visualise visualise = new Visualise();
+  final int delayBetweenRounds = 120;
+
   GameState state     = GameState.NotStarted;
   Round round;
   int points, timer   = 0;
@@ -30,12 +28,13 @@ class Game
         
       case InRound:
         round.update();
+        visualise.crosshair();
         visualise.particles(round.particles);
         visualise.statistics(round.number, points, round.missiles);
         break;
         
       case BetweenRounds:
-        visualise.roundStart(round.number + 1);
+        visualise.betweenRounds(round.number + 1);
         betweenRoundsTimer();
         break;
         

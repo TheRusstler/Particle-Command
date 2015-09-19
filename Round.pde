@@ -1,8 +1,8 @@
 // Round compromises a number of particles and missiles
 class Round 
 {
-  final int roundOneParticles = 10;
-  final int particleIncreasePerRound = 5;
+  final static int INITIAL_PARTICLES = 10;
+  final static int ROUND_PARTICLE_INCREASE = 5;
   
   int number, missiles;
   ArrayList<Particle> particles;
@@ -12,7 +12,7 @@ class Round
     this.number = number;
     this.missiles = 20;
     
-    int numberOfParticles = roundOneParticles + (number-1) * particleIncreasePerRound;
+    int numberOfParticles = INITIAL_PARTICLES + (number-1) * ROUND_PARTICLE_INCREASE;
     this.particles = getParticles(numberOfParticles);
   }
   
