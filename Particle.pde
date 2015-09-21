@@ -20,7 +20,7 @@ class Particle
     velocity.mult(DRAG);
   }
   
-  boolean isBelowScreen() 
+  boolean hasHitGround() 
   {
     return position.y + diameter / 2 >= height - 5;
   }

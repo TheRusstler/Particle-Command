@@ -3,7 +3,6 @@ import java.util.*;
 // Round compromises a number of particles, missiles and cities
 class Round 
 {
-  final static int INITIAL_MISSILES = 10;
   final static int INITIAL_PARTICLES = 10;
   final static int ROUND_PARTICLE_INCREASE = 5;
   
@@ -14,11 +13,11 @@ class Round
   public Round(int number) 
   {
     this.number = number;
-    this.missilesRemaining = INITIAL_MISSILES;
     this.missiles = new ArrayList<Missile>();
     
     int numberOfParticles = INITIAL_PARTICLES + (number-1) * ROUND_PARTICLE_INCREASE;
     this.particles = getParticles(numberOfParticles);
+    this.missilesRemaining = numberOfParticles * 2;
   }
   
   void update()
@@ -33,13 +32,35 @@ class Round
       m.integrate();
     }
     
+    removeGroundedParticles();
     removeExplodedMissiles();
     detectMissileCollisions();
+    
+    if(particles.size() == 0)
+    {
+      roundComplete();
+    }
+  }
+  
+  void removeGroundedParticles()
+  {
+    List<Particle> grounded = new ArrayList<Particle>();
+    
+    for(Particle p : particles)
+    {
+      if(p.hasHitGround())
+      {
+        grounded.add(p);
+      }
+    }
+    
+    particles.removeAll(grounded);
   }
   
   void removeExplodedMissiles()
   {
     List<Missile> exploded = new ArrayList<Missile>();
+    
     for(Missile m : missiles)
     {
       if(m.exploded == true)
@@ -53,14 +74,15 @@ class Round
   
   void detectMissileCollisions()
   {
+    float distance, sumOfRadiuses;
     List<Particle> collisions = new ArrayList<Particle>();
     
     for(Particle p : particles)
     {
       for(Missile m : missiles)
       {
-        float distance = PVector.dist(p.position, m.position);
-        float sumOfRadiuses = p.diameter/2 + m.diameter/2;
+        distance = PVector.dist(p.position, m.position);
+        sumOfRadiuses = p.diameter/2 + m.diameter/2;
         
         if(distance <= sumOfRadiuses)
         {
@@ -89,15 +111,17 @@ class Round
   
   ArrayList<Particle> getParticles(int numberOfParticles) 
   {
+    int xStart, yStart;
+    float xVelocity, yVelocity, diameter;
     ArrayList<Particle> particles = new ArrayList<Particle>();
     
     for(int i=0; i<numberOfParticles; i++) 
     {
-      int xStart = (int)random(0, width);
-      int yStart = (int)random(-400, -20);
-      float xVelocity = random(0, 1f);
-      float yVelocity = random(0, 2f);
-      float diameter = random(2, 25);
+      xStart = (int)random(0, width);
+      yStart = (int)random(-400, -20);
+      xVelocity = random(0, 1f);
+      yVelocity = random(0, 2f);
+      diameter = random(2, 25);
       
       // Choose xVelocity direction according to starting half of screen
       if(xStart < width/2 && xVelocity < 0 || xStart > width/2 && xVelocity > 0) 
