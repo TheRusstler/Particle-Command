@@ -3,6 +3,16 @@
 
 class Visualise 
 {
+  void cities(ArrayList<City> cities)
+  {
+    stroke(166);
+    fill(166);
+    for(City c : cities)
+    {
+      rect(c.xMin, c.yMin, c.WIDTH, c.HEIGHT, 7);
+    }
+  }
+  
   void particles(ArrayList<Particle> particles)
   {
     stroke(255);

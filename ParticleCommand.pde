@@ -30,6 +30,7 @@ void draw()
       
     case InRound:
       round.update();
+      visualise.cities(cities);
       visualise.particles(round.particles);
       visualise.missiles(round.missiles);
       visualise.statistics(round.number, points, round.missilesRemaining);
@@ -70,8 +71,10 @@ void startNextRound()
 ArrayList<City> createCities() 
 {
   ArrayList<City> cities = new ArrayList<City>();
-  cities.add(new City());
-  cities.add(new City());
+  cities.add(new City(width * 1/5));
+  cities.add(new City(width * 2/5));
+  cities.add(new City(width * 3/5));
+  cities.add(new City(width * 4/5));
   return cities;
 }
 

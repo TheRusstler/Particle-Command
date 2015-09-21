@@ -3,8 +3,8 @@ import java.util.*;
 // Round compromises a number of particles, missiles and cities
 class Round 
 {
-  final static int INITIAL_PARTICLES = 10;
-  final static int ROUND_PARTICLE_INCREASE = 5;
+  final int INITIAL_PARTICLES = 10;
+  final int ROUND_PARTICLE_INCREASE = 5;
   
   int number, missilesRemaining;
   ArrayList<Particle> particles;
@@ -35,6 +35,7 @@ class Round
     removeGroundedParticles();
     removeExplodedMissiles();
     detectMissileCollisions();
+    detectCityCollisions();
     
     if(particles.size() == 0)
     {
@@ -97,7 +98,24 @@ class Round
 
   void detectCityCollisions()
   {
+    float distance;
+    List<City> cityCollisions = new ArrayList<City>();
+    List<Particle> particleCollisions = new ArrayList<Particle>();
     
+    for(Particle p : particles)
+    {
+      for(City c : cities)
+      {
+        if(c.isWithinBounds(p.position, p.diameter/2))
+        {
+          cityCollisions.add(c);
+          particleCollisions.add(p);
+        }
+      }
+    }
+    
+    cities.removeAll(cityCollisions);
+    particles.removeAll(particleCollisions);
   }
   
   void fireMissile(int x, int y)
