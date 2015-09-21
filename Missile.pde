@@ -2,6 +2,7 @@ class Missile
 {
   final PVector position;
   int diameter;
+  boolean exploded;
   
   public Missile(int x, int y)
   {
@@ -10,18 +11,25 @@ class Missile
   }
   
   private int increasing = 40;
-  private int decreasing = 40;
+  private int decreasing = 41;
   void integrate()
   {
-    if(increasing > 0)
+    if(exploded == false)
     {
-      diameter++;
-      increasing--;
-    }
-    else if(decreasing > 0)
-    {
-      diameter--;
-      decreasing--;
+      if(increasing > 0)
+      {
+        diameter++;
+        increasing--;
+      }
+      else if(decreasing > 0)
+      {
+        diameter--;
+        decreasing--;
+      }
+      else
+      {
+        exploded = true;
+      }
     }
   }
 }

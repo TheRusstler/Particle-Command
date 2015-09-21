@@ -1,8 +1,8 @@
 final int delayBetweenRounds = 120;
 
+Round round;
 Visualise visualise = new Visualise();
 GameState state     = GameState.NotStarted;
-Round round;
 int points, timer   = 0;
 
 ArrayList<City> cities;
@@ -38,7 +38,7 @@ void draw()
       
     case BetweenRounds:
       visualise.betweenRounds(round.number + 1);
-      betweenRoundsTimer();
+      betweenRoundsTimerTick();
       break;
       
     case Over:
@@ -46,7 +46,7 @@ void draw()
   }
 }
 
-void betweenRoundsTimer()
+void betweenRoundsTimerTick()
 {
   if(timer == 0) 
   {
@@ -83,11 +83,7 @@ void mousePressed()
       break;
       
     case InRound:
-      if(round.missilesRemaining > 0)
-      {
-        round.missiles.add(new Missile(mouseX, mouseY));
-        round.missilesRemaining--;
-      }
+      round.fireMissile(mouseX, mouseY);
       break;
       
     case BetweenRounds:

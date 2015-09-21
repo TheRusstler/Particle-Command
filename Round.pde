@@ -1,4 +1,6 @@
-// Round compromises a number of particles and missiles
+import java.util.*;
+
+// Round compromises a number of particles, missiles and cities
 class Round 
 {
   final static int INITIAL_MISSILES = 10;
@@ -29,6 +31,59 @@ class Round
     for(Missile m : missiles)
     {
       m.integrate();
+    }
+    
+    removeExplodedMissiles();
+    detectMissileCollisions();
+  }
+  
+  void removeExplodedMissiles()
+  {
+    List<Missile> exploded = new ArrayList<Missile>();
+    for(Missile m : missiles)
+    {
+      if(m.exploded == true)
+      {
+        exploded.add(m);
+      }
+    }
+    
+    missiles.removeAll(exploded);
+  }
+  
+  void detectMissileCollisions()
+  {
+    List<Particle> collisions = new ArrayList<Particle>();
+    
+    for(Particle p : particles)
+    {
+      for(Missile m : missiles)
+      {
+        float distance = PVector.dist(p.position, m.position);
+        float sumOfRadiuses = p.diameter/2 + m.diameter/2;
+        
+        if(distance <= sumOfRadiuses)
+        {
+          points += 10;
+          collisions.add(p);
+        }
+      }
+    }
+    
+    particles.removeAll(collisions);
+  }
+
+  void detectCityCollisions()
+  {
+    
+  }
+  
+  void fireMissile(int x, int y)
+  {
+    if(missilesRemaining > 0)
+    {
+      missiles.add(new Missile(x, y));
+      missilesRemaining--;
     }
   }
   
