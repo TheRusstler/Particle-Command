@@ -38,6 +38,7 @@ class Visualise
     stroke(0, 255, 0);
     fill(0, 255, 0);
     textSize(14);
+    textAlign(LEFT);
     text("Round: " + round, 10, 20);
     text("Points: " + points, 10, 40);
     text("Missiles: " + missiles, 10, 60);
@@ -48,7 +49,8 @@ class Visualise
     stroke(0, 255, 0);
     fill(0, 255, 0);
     textSize(32);
-    text("Round " + round, width/2 - 60, height/2 - 10);
+    textAlign(CENTER);
+    text("Round " + round, width/2, height/2);
   }
   
   void gameOver()
@@ -56,7 +58,25 @@ class Visualise
     stroke(255, 0, 0);
     fill(255, 0, 0);
     textSize(32);
-    text("GAME OVER!", width/2 - 80, height/2 - 10);
+    textAlign(CENTER);
+    text("GAME OVER!", width/2, height/2);
+    
+    textSize(12);
+    text("Click anywhere to restart", width/2, height/2 + 50);
+  }
+  
+  void startScreen()
+  {
+    stroke(0, 255, 0);
+    fill(0, 255, 0);
+    textSize(32);
+    textAlign(CENTER);
+    text("MISSILE COMMAND!", width/2, height/2);
+    
+    stroke(0, 0, 255);
+    fill(0, 0, 255);
+    textSize(12);
+    text("Click anywhere to start", width/2, height/2 + 50);
   }
   
   void crosshair()

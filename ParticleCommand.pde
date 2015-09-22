@@ -2,7 +2,7 @@ final int delayBetweenRounds = 120;
 
 Round round;
 Visualise visualise = new Visualise();
-GameState state     = GameState.NotStarted;
+int state     = GameState.NotStarted;
 int points, timer   = 0;
 
 ArrayList<City> cities;
@@ -15,7 +15,8 @@ void setup()
   points = 0;
   cities = createCities();
   round = new Round(0);
-  state = GameState.BetweenRounds;
+  state = GameState.NotStarted;
+  //state = GameState.Over;
   timer = delayBetweenRounds;
 }
 
@@ -25,10 +26,11 @@ void draw()
   
   switch(state)
   {
-    case NotStarted:
+    case GameState.NotStarted:
+      visualise.startScreen();
       break;
       
-    case InRound:
+    case GameState.InRound:
       round.update();
       visualise.cities(cities);
       visualise.particles(round.particles);
@@ -37,12 +39,12 @@ void draw()
       visualise.crosshair();
       break;
       
-    case BetweenRounds:
+    case GameState.BetweenRounds:
       visualise.betweenRounds(round.number + 1);
       betweenRoundsTimerTick();
       break;
       
-    case Over:
+    case GameState.Over:
       visualise.statistics(round.number, points, round.missilesRemaining);
       visualise.gameOver();
       break;
@@ -89,18 +91,20 @@ void mousePressed()
 {
     switch(state)
   {
-    case NotStarted:
+    case GameState.NotStarted:
+      state = GameState.BetweenRounds;
       break;
       
-    case InRound:
+    case GameState.InRound:
       round.fireMissile(mouseX, mouseY);
       break;
       
-    case BetweenRounds:
+    case GameState.BetweenRounds:
       timer = 0;
       break;
       
-    case Over:
+    case GameState.Over:
+      setup();
       break;
   }
 }
