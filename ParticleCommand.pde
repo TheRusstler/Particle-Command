@@ -43,6 +43,8 @@ void draw()
       break;
       
     case Over:
+      visualise.statistics(round.number, points, round.missilesRemaining);
+      visualise.gameOver();
       break;
   }
 }
@@ -54,6 +56,11 @@ void betweenRoundsTimerTick()
     startNextRound();
   }
   timer--;
+}
+
+void gameOver()
+{
+  state = GameState.Over;
 }
 
 void roundComplete()

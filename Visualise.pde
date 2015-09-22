@@ -37,6 +37,7 @@ class Visualise
   {
     stroke(0, 255, 0);
     fill(0, 255, 0);
+    textSize(14);
     text("Round: " + round, 10, 20);
     text("Points: " + points, 10, 40);
     text("Missiles: " + missiles, 10, 60);
@@ -46,7 +47,16 @@ class Visualise
   {
     stroke(0, 255, 0);
     fill(0, 255, 0);
-    text("Round " + round, width/2 - 20, height/2 - 5);
+    textSize(32);
+    text("Round " + round, width/2 - 60, height/2 - 10);
+  }
+  
+  void gameOver()
+  {
+    stroke(255, 0, 0);
+    fill(255, 0, 0);
+    textSize(32);
+    text("GAME OVER!", width/2 - 80, height/2 - 10);
   }
   
   void crosshair()

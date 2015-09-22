@@ -20,7 +20,7 @@ class Round
     this.missilesRemaining = numberOfParticles * 2;
   }
   
-  void update()
+  void update() 
   {
     for(Particle p : particles)
     {
@@ -37,7 +37,11 @@ class Round
     detectMissileCollisions();
     detectCityCollisions();
     
-    if(particles.size() == 0)
+    if(cities.size() == 0)
+    {
+      gameOver();
+    }
+    else if(particles.size() == 0)
     {
       roundComplete();
     }
