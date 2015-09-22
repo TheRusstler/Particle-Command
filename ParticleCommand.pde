@@ -1,16 +1,19 @@
+import ddf.minim.*;
+
 final int delayBetweenRounds = 120;
 
-Round round;
 Visualise visualise = new Visualise();
-int state     = GameState.NotStarted;
-int points, timer   = 0;
+SoundEffect sound;
 
+Round round;
+int points, timer = 0, state = GameState.NotStarted;
 ArrayList<City> cities;
 
 void setup() 
 {
   size(800, 600);
   noCursor();
+  sound = new SoundEffect(new Minim(this));
   
   points = 0;
   cities = createCities();

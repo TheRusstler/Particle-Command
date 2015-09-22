@@ -14,10 +14,8 @@ class Round
   {
     this.number = number;
     this.missiles = new ArrayList<Missile>();
-    
-    int numberOfParticles = INITIAL_PARTICLES + (number-1) * ROUND_PARTICLE_INCREASE;
-    this.particles = getParticles(numberOfParticles);
-    this.missilesRemaining = numberOfParticles * 2;
+    this.particles = getParticles(INITIAL_PARTICLES + (number-1) * ROUND_PARTICLE_INCREASE);
+    this.missilesRemaining = particles.size() * 2;
   }
   
   void update() 
@@ -114,6 +112,7 @@ class Round
         {
           cityCollisions.add(c);
           particleCollisions.add(p);
+          sound.explosion();
         }
       }
     }
@@ -127,6 +126,7 @@ class Round
     if(missilesRemaining > 0)
     {
       missiles.add(new Missile(x, y));
+      sound.missile();
       missilesRemaining--;
     }
   }
@@ -137,12 +137,14 @@ class Round
     float xVelocity, yVelocity, diameter;
     ArrayList<Particle> particles = new ArrayList<Particle>();
     
+    float roundVelocityMultiplier = 1 + number/10.0;
+    
     for(int i=0; i<numberOfParticles; i++) 
     {
       xStart = (int)random(0, width);
       yStart = (int)random(-400, -20);
-      xVelocity = random(0, 1f);
-      yVelocity = random(0, 2f);
+      xVelocity = random(0, 1*roundVelocityMultiplier);
+      yVelocity = random(0, 2*roundVelocityMultiplier);
       diameter = random(2, 25);
       
       // Choose xVelocity direction according to starting half of screen
