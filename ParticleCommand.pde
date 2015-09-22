@@ -105,6 +105,7 @@ void mousePressed()
       
     case GameState.Over:
       setup();
+      state = GameState.BetweenRounds;
       break;
   }
 }
