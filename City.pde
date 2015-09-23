@@ -1,12 +1,16 @@
 class City 
 {
+  public static final int MAX_CITIES = 6;
   public final int WIDTH = 60, HEIGHT = 60;
-  
   private final int YOFFSET = 10;
   private final int yMin, yMax, xMin, xMax;
+  private final int number;
   
-  public City(int position)
+  public City(int number)
   {
+    this.number = number;
+    
+    int position = (int)(width * (number + 1) / (MAX_CITIES + 1));
     yMin = height - HEIGHT + YOFFSET;
     yMax = height + YOFFSET;
     xMin = position - WIDTH/2;

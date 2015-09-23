@@ -2,25 +2,29 @@ import ddf.minim.*;
 
 final int delayBetweenRounds = 120;
 
-Visualise visualise = new Visualise();
+Visualise visualise;
 SoundEffect sound;
 
 Round round;
-int points, timer = 0, state = GameState.NotStarted;
+int points, timer, state;
 ArrayList<City> cities;
+
+public ParticleCommand()
+{
+  visualise = new Visualise();
+  sound     = new SoundEffect(new Minim(this));
+}
 
 void setup() 
 {
   size(800, 600);
   noCursor();
-  sound = new SoundEffect(new Minim(this));
-  
+
   points = 0;
   cities = createCities();
-  round = new Round(0);
-  state = GameState.NotStarted;
-  //state = GameState.Over;
-  timer = delayBetweenRounds;
+  round  = new Round(0);
+  state  = GameState.NotStarted;
+  timer  = delayBetweenRounds;
 }
 
 void draw() 
@@ -83,10 +87,12 @@ void startNextRound()
 ArrayList<City> createCities() 
 {
   ArrayList<City> cities = new ArrayList<City>();
-  cities.add(new City(width * 1/5));
-  cities.add(new City(width * 2/5));
-  cities.add(new City(width * 3/5));
-  cities.add(new City(width * 4/5));
+  
+  for(int i=0; i<City.MAX_CITIES; i++)
+  {
+    cities.add(new City(i));
+  }
+  
   return cities;
 }
 

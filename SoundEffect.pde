@@ -15,7 +15,12 @@ class SoundEffect
   
   void explosion()
   {
-    playFile("sounds/explosion.mp3");
+    playFile("sounds/explosion.wav");
+  }
+  
+  void upgrade()
+  {
+    playFile("sounds/upgrade.wav");
   }
   
   void playFile(String path)
