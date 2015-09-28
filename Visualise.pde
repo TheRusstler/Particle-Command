@@ -1,18 +1,19 @@
 class Visualise 
 {
-  PImage world;
+  PImage world, city;
   public Visualise()
   {
     world = loadImage("images/world.jpg");
+    city = loadImage("images/city.jpg");
   }
   
   void cities(ArrayList<City> cities)
   {
     stroke(166);
-    fill(166);
+    fill(166,0,0);
     for(City c : cities)
     {
-      rect(c.xMin, c.yMin, c.WIDTH, c.HEIGHT);
+      image(city, c.xMin, c.yMin);
     }
   }
   

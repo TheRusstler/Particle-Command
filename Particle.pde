@@ -69,6 +69,6 @@ class Particle
   
   boolean hasHitGround() 
   {
-    return position.y + diameter / 2 >= height - 5;
+    return position.y + diameter / 2 >= height - 50;
   }
 }
