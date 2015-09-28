@@ -68,6 +68,7 @@ class Round
       randomParticle = particles.get((int)random(0, particles.size()-1));
       newFromSplitting = randomParticle.split();
       particles.add(newFromSplitting);
+      sound.particleSplit();
     }
   }
   

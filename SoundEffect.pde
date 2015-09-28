@@ -23,6 +23,11 @@ class SoundEffect
     playFile("sounds/missile_hit.wav");
   }
   
+  void particleSplit()
+  {
+    playFile("sounds/split.wav");
+  }
+  
   void explosion()
   {
     playFile("sounds/explosion.wav");
