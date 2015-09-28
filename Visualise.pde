@@ -1,12 +1,18 @@
 class Visualise 
 {
+  PImage world;
+  public Visualise()
+  {
+    world = loadImage("images/world.jpg");
+  }
+  
   void cities(ArrayList<City> cities)
   {
     stroke(166);
     fill(166);
     for(City c : cities)
     {
-      rect(c.xMin, c.yMin, c.WIDTH, c.HEIGHT, 7);
+      rect(c.xMin, c.yMin, c.WIDTH, c.HEIGHT);
     }
   }
   
@@ -38,6 +44,11 @@ class Visualise
     text("Round: " + round, 10, 20);
     text("Points: " + points, 10, 40);
     text("Missiles: " + missiles, 10, 60);
+  }
+  
+  void world()
+  {
+    image(world, 0, height-120);
   }
   
   void betweenRounds(int round)

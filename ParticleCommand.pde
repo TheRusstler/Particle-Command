@@ -9,16 +9,13 @@ Round round;
 int points, timer, state;
 ArrayList<City> cities;
 
-public ParticleCommand()
-{
-  visualise = new Visualise();
-  sound     = new SoundEffect(new Minim(this));
-}
-
 void setup() 
 {
   size(800, 600);
   noCursor();
+  
+  visualise = new Visualise();
+  sound     = new SoundEffect(new Minim(this));
 
   points = 0;
   cities = createCities();
@@ -41,6 +38,7 @@ void draw()
       
     case GameState.InRound:
       round.update();
+      visualise.world();
       visualise.cities(cities);
       visualise.particles(round.particles);
       visualise.missiles(round.missiles);

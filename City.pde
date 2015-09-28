@@ -1,8 +1,8 @@
 class City 
 {
-  public static final int MAX_CITIES = 6;
-  public final int WIDTH = 60, HEIGHT = 60;
-  private final int YOFFSET = 10;
+  public static final int MAX_CITIES = 5;
+  public final int WIDTH = 60, HEIGHT = 20;
+  private final int YOFFSET = -52;
   private final int yMin, yMax, xMin, xMax;
   private final int number;
   
