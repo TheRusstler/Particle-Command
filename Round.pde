@@ -1,6 +1,5 @@
 import java.util.*;
 
-// Round compromises a number of particles, missiles and cities
 class Round 
 {
   final int INITIAL_PARTICLES = 10;
@@ -133,27 +132,12 @@ class Round
   
   ArrayList<Particle> getParticles(int numberOfParticles) 
   {
-    int xStart, yStart;
-    float xVelocity, yVelocity, diameter;
     ArrayList<Particle> particles = new ArrayList<Particle>();
-    
     float roundVelocityMultiplier = 1 + number/10.0;
     
     for(int i=0; i<numberOfParticles; i++) 
     {
-      xStart = (int)random(0, width);
-      yStart = (int)random(-400, -20);
-      xVelocity = random(0, 1*roundVelocityMultiplier);
-      yVelocity = random(0, 2*roundVelocityMultiplier);
-      diameter = random(2, 25);
-      
-      // Choose xVelocity direction according to starting half of screen
-      if(xStart < width/2 && xVelocity < 0 || xStart > width/2 && xVelocity > 0) 
-      {
-        xVelocity *= -1;
-      }
-      
-      particles.add(new Particle(xStart, yStart, xVelocity, yVelocity, diameter));
+      particles.add(new Particle(number));
     }
     
     return particles;
