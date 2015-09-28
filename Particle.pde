@@ -10,7 +10,7 @@ class Particle
     
   Particle(int round) 
   { 
-    this.gravity = new PVector(0f, 0.002f);
+    this.gravity = new PVector(0f, 0.003f);
     this.diameter = random(10, 25);
     this.startDelay = (int)random(0, 600);
     this.r = random(50, 255);
