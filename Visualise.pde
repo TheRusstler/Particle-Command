@@ -61,12 +61,12 @@ class Visualise
     {
       text("ROUND " + round + " COMPLETE!", width/2, height/2 -30);
       textSize(20);
-      text("Points: " + points, width/2, height/2 +50);
+      text(points + " POINTS", width/2, height/2 +30);
     }
     else 
     {
       textAlign(CENTER);
-      text("Round " + round, width/2, height/2);
+      text("ROUND " + round, width/2, height/2);
     }
   }
   
