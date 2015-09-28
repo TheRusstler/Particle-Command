@@ -52,13 +52,22 @@ class Visualise
     image(world, 0, height-120);
   }
   
-  void betweenRounds(int round)
+  void betweenRounds(int round, int points)
   {
     randomBrush();
-    
     textSize(32);
-    textAlign(CENTER);
-    text("Round " + round, width/2, height/2);
+      
+    if(round > 1 && timer < DELAY_BETWEEN_ROUNDS)
+    {
+      text("ROUND " + round + " COMPLETE!", width/2, height/2 -30);
+      textSize(20);
+      text("Points: " + points, width/2, height/2 +50);
+    }
+    else 
+    {
+      textAlign(CENTER);
+      text("Round " + round, width/2, height/2);
+    }
   }
   
   void gameOver()

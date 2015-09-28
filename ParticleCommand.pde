@@ -1,6 +1,7 @@
 import ddf.minim.*;
 
-final int delayBetweenRounds = 120;
+//final int DELAY_BETWEEN_ROUNDS = 120;
+final int DELAY_BETWEEN_ROUNDS = 180;
 
 Visualise visualise;
 SoundEffect sound;
@@ -21,8 +22,7 @@ void setup()
   cities = createCities();
   round  = new Round(0);
   state  = GameState.NotStarted;
-  //state  = GameState.Over;
-  timer  = delayBetweenRounds;
+  timer  = DELAY_BETWEEN_ROUNDS;
 }
 
 void draw() 
@@ -47,7 +47,7 @@ void draw()
       break;
       
     case GameState.BetweenRounds:
-      visualise.betweenRounds(round.number + 1);
+      visualise.betweenRounds(round.number + 1, points);
       betweenRoundsTimerTick();
       break;
       
@@ -76,7 +76,7 @@ void gameOver()
 void roundComplete()
 {
   state = GameState.BetweenRounds;
-  timer = delayBetweenRounds;
+  timer = DELAY_BETWEEN_ROUNDS;
   sound.startup();
 }
 

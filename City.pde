@@ -2,7 +2,7 @@ class City
 {
   public static final int MAX_CITIES = 5;
   public final int WIDTH = 60, HEIGHT = 30;
-  private final int YOFFSET = -52;
+  private final int YOFFSET = -54;
   private final int yMin, yMax, xMin, xMax;
   private final int number;
   
