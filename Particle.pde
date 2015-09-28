@@ -5,27 +5,29 @@ class Particle
   final float r, g, b;
   
   PVector position, velocity, gravity;
+  int startDelay;
+  boolean started;
     
   Particle(int round) 
   { 
     this.gravity = new PVector(0f, 0.002f);
-    this.diameter = random(2, 25);
+    this.diameter = random(10, 25);
+    this.startDelay = (int)random(0, 600);
     this.r = random(50, 255);
     this.g = random(50, 255);
     this.b = random(50, 255);
     
-    randomise(round);
+    randomiseMotion(round);
   }
   
-  void randomise(int round)
+  void randomiseMotion(int round)
   {
-    int x, y;
+    int x;
     float xVelocity, yVelocity, roundVelocityMultiplier;
     
     roundVelocityMultiplier = 1 + round/10.0;
     
     x = (int)random(0, width);
-    y = (int)random(-400, -20);
     xVelocity = random(0, 1*roundVelocityMultiplier);
     yVelocity = random(0, 2*roundVelocityMultiplier);
     
@@ -35,15 +37,34 @@ class Particle
       xVelocity *= -1;
     }
     
-    position = new PVector(x, y);
+    position = new PVector(x, -20);
     velocity = new PVector(xVelocity, yVelocity);
   }
   
   void integrate() 
   { 
-    position.add(velocity); 
-    velocity.add(gravity);
-    velocity.mult(DRAG);
+    if(started)
+    {
+      position.add(velocity); 
+      velocity.add(gravity);
+      velocity.mult(DRAG);
+    }
+    else
+    {
+      checkIfStarted();
+    }
+  }
+  
+  void checkIfStarted()
+  {
+    if(startDelay == 0)
+    {
+      started = true;
+    }
+    else
+    {
+      startDelay--;
+    }
   }
   
   boolean hasHitGround() 

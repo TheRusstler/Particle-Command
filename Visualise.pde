@@ -51,14 +51,15 @@ class Visualise
   
   void gameOver()
   {
-    stroke(255, 0, 0);
-    fill(255, 0, 0);
+    explosionBrush();
     textSize(32);
     textAlign(CENTER);
     text("GAME OVER!", width/2, height/2);
     
+    stroke(0, 0, 255);
+    fill(0, 0, 255);
     textSize(12);
-    text("Click anywhere to restart", width/2, height/2 + 50);
+    text("Click to restart", width/2, height/2 + 50);
   }
   
   void startScreen()

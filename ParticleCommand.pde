@@ -23,7 +23,8 @@ void setup()
   points = 0;
   cities = createCities();
   round  = new Round(0);
-  state  = GameState.NotStarted;
+  //state  = GameState.NotStarted;
+  state  = GameState.Over;
   timer  = delayBetweenRounds;
 }
 
@@ -55,6 +56,7 @@ void draw()
     case GameState.Over:
       visualise.statistics(round.number, points, round.missilesRemaining);
       visualise.gameOver();
+      visualise.crosshair();
       break;
   }
 }
