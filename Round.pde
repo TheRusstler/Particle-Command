@@ -33,6 +33,7 @@ class Round
     removeExplodedMissiles();
     detectMissileCollisions();
     detectCityCollisions();
+    splitParticles();
     
     if(cities.size() == 0)
     {
@@ -57,6 +58,17 @@ class Round
     }
     
     particles.removeAll(grounded);
+  }
+  
+  void splitParticles()
+  {
+    if(frameCount % 100 == 0)
+    {
+      Particle newFromSplitting, randomParticle;
+      randomParticle = particles.get((int)random(0, particles.size()-1));
+      newFromSplitting = randomParticle.split();
+      particles.add(newFromSplitting);
+    }
   }
   
   void removeExplodedMissiles()
@@ -135,10 +147,14 @@ class Round
     ArrayList<Particle> particles = new ArrayList<Particle>();
     float roundVelocityMultiplier = 1 + number/10.0;
     int numberOfParticles = INITIAL_PARTICLES + (number-1) * ROUND_PARTICLE_INCREASE;
+    int startDelay;
+    float diameter;
     
     for(int i=0; i<numberOfParticles; i++) 
     {
-      particles.add(new Particle(number));
+      startDelay = (int)random(0, 600);
+      diameter = random(10, 25);
+      particles.add(new Particle(number, diameter, startDelay));
     }
     
     return particles;
