@@ -13,7 +13,7 @@ class Round
   {
     this.number = number;
     this.missiles = new ArrayList<Missile>();
-    this.particles = getParticles(INITIAL_PARTICLES + (number-1) * ROUND_PARTICLE_INCREASE);
+    this.particles = getParticles();
     this.missilesRemaining = particles.size() * 2;
   }
   
@@ -130,10 +130,11 @@ class Round
     }
   }
   
-  ArrayList<Particle> getParticles(int numberOfParticles) 
+  ArrayList<Particle> getParticles() 
   {
     ArrayList<Particle> particles = new ArrayList<Particle>();
     float roundVelocityMultiplier = 1 + number/10.0;
+    int numberOfParticles = INITIAL_PARTICLES + (number-1) * ROUND_PARTICLE_INCREASE;
     
     for(int i=0; i<numberOfParticles; i++) 
     {

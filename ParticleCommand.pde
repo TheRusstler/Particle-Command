@@ -23,8 +23,8 @@ void setup()
   points = 0;
   cities = createCities();
   round  = new Round(0);
-  //state  = GameState.NotStarted;
-  state  = GameState.Over;
+  state  = GameState.NotStarted;
+  //state  = GameState.Over;
   timer  = delayBetweenRounds;
 }
 
