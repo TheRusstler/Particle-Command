@@ -1,6 +1,3 @@
-
-// Visualise class draws objects
-
 class Visualise 
 {
   void cities(ArrayList<City> cities)
@@ -46,8 +43,8 @@ class Visualise
   
   void betweenRounds(int round)
   {
-    stroke(0, 255, 0);
-    fill(0, 255, 0);
+    randomBrush();
+    
     textSize(32);
     textAlign(CENTER);
     text("Round " + round, width/2, height/2);
@@ -67,11 +64,11 @@ class Visualise
   
   void startScreen()
   {
-    stroke(0, 255, 0);
-    fill(0, 255, 0);
+    randomBrush();
+      
     textSize(32);
     textAlign(CENTER);
-    text("MISSILE COMMAND!", width/2, height/2);
+    text("PARTICLE COMMAND!", width/2, height/2);
     
     stroke(0, 0, 255);
     fill(0, 0, 255);
@@ -84,5 +81,11 @@ class Visualise
     stroke(0, 0, 255);
     line(mouseX-10, mouseY, mouseX+10, mouseY);
     line(mouseX, mouseY-10, mouseX, mouseY+10);
+  }
+  
+  void randomBrush()
+  {
+    stroke(random(0,255), random(0,255), random(0,255));
+    fill(random(0,255), random(0,255), random(0,255));
   }
 }

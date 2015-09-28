@@ -8,6 +8,11 @@ class SoundEffect
     this.minim = minim;
   }
   
+  void startup()
+  {
+    playFile("sounds/startup.wav");
+  }
+  
   void missile()
   {
     playFile("sounds/missile.mp3");

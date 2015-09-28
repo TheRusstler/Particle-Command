@@ -35,6 +35,7 @@ void draw()
   {
     case GameState.NotStarted:
       visualise.startScreen();
+      visualise.crosshair();
       break;
       
     case GameState.InRound:
@@ -76,6 +77,7 @@ void roundComplete()
 {
   state = GameState.BetweenRounds;
   timer = delayBetweenRounds;
+  sound.startup();
 }
 
 void startNextRound()
@@ -101,7 +103,7 @@ void mousePressed()
     switch(state)
   {
     case GameState.NotStarted:
-      state = GameState.BetweenRounds;
+      roundComplete();
       break;
       
     case GameState.InRound:
@@ -114,7 +116,7 @@ void mousePressed()
       
     case GameState.Over:
       setup();
-      state = GameState.BetweenRounds;
+      roundComplete();
       break;
   }
 }
