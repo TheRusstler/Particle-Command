@@ -7,7 +7,7 @@ class Bomber
   public Bomber(int delay)
   {
     this.startDelay = delay;
-    velocity = new PVector(-2, 0);
+    velocity = new PVector(random(-2, -1), 0);
     position = new PVector(width + 50, 50);
   }
   

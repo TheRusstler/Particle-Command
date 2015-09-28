@@ -8,12 +8,13 @@ class Round
   int number, missilesRemaining;
   ArrayList<Particle> particles;
   ArrayList<Missile> missiles; 
-  ArrayList<Bomber> bombers;
+  ArrayList<Bomber> bombers; 
   
   public Round(int number) 
   {
     this.number = number;
     this.missiles = new ArrayList<Missile>();
+    this.bombers = getBombers();
     this.particles = getParticles();
     this.missilesRemaining = (int) (particles.size() * 1.7);
   }
@@ -28,6 +29,11 @@ class Round
     for(Missile m : missiles)
     {
       m.integrate();
+    }
+    
+    for(Bomber b : bombers)
+    {
+      b.integrate();
     }
     
     removeGroundedParticles();
@@ -76,6 +82,16 @@ class Round
         sound.particleSplit();
       }
     }
+  }
+  
+  ArrayList<Bomber> getBombers()
+  {
+    ArrayList<Bomber> bombers = new ArrayList<Bomber>();
+    //if(number > 1)
+    //{
+      bombers.add(new Bomber((int)random(50, 300)));
+    //}
+    return bombers;
   }
   
   void removeExplodedMissiles()

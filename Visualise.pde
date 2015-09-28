@@ -36,6 +36,17 @@ class Visualise
     }
   }
   
+  void bombers(ArrayList<Bomber> bombers)
+  {
+    stroke(255, 0, 0);
+    fill(255, 0, 0);
+    
+    for(Bomber b : bombers)
+    {
+      rect(b.position.x, b.position.y, 50, 50);
+    }
+  }
+  
   void statistics(int round, int points, int missiles)
   {
     stroke(0, 255, 0);

@@ -40,6 +40,7 @@ void draw()
       visualise.world();
       visualise.cities(cities);
       visualise.particles(round.particles);
+      visualise.bombers(round.bombers);
       visualise.missiles(round.missiles);
       visualise.statistics(round.number, points, round.missilesRemaining);
       visualise.crosshair();
