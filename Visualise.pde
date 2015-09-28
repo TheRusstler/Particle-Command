@@ -12,18 +12,17 @@ class Visualise
   
   void particles(ArrayList<Particle> particles)
   {
-    stroke(255);
-    fill(255);
     for(Particle p : particles)
     {
+      stroke(p.r, p.g, p.b);
+      fill(p.r, p.g, p.b);
       ellipse(p.position.x, p.position.y, p.diameter, p.diameter);
     }
   }
   
   void missiles(ArrayList<Missile> missiles)
   {
-    stroke(255, 0, 0);
-    fill(255, 0, 0);
+    explosionBrush();
     for(Missile m : missiles)
     {
       ellipse(m.position.x, m.position.y, m.diameter, m.diameter);
@@ -83,9 +82,37 @@ class Visualise
     line(mouseX, mouseY-10, mouseX, mouseY+10);
   }
   
+  boolean isRed;
+  void explosionBrush()
+  { 
+    if(frameCount % 5 == 0)
+    {
+      isRed = !isRed;
+    }
+    
+    if(isRed)
+    {
+      stroke(255, 0, 0);
+      fill(255, 0, 0);
+    }
+    else
+    {
+      stroke(255, 255, 255);
+      fill(255, 255, 255);
+    }
+  }
+  
+  float r = 0, g = 0, b = 0;
   void randomBrush()
   {
-    stroke(random(0,255), random(0,255), random(0,255));
-    fill(random(0,255), random(0,255), random(0,255));
+    if(frameCount % 2 == 0)
+    {
+      r = random(0, 255);
+      g = random(0, 255);
+      b = random(0, 255);
+    }
+    
+    stroke(r, g, b);
+    fill(r, g, b);
   }
 }
