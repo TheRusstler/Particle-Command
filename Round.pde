@@ -14,7 +14,7 @@ class Round
     this.number = number;
     this.missiles = new ArrayList<Missile>();
     this.particles = getParticles();
-    this.missilesRemaining = particles.size() * 2;
+    this.missilesRemaining = (int) (particles.size() * 1.7);
   }
   
   void update() 
@@ -62,7 +62,7 @@ class Round
   
   void splitParticles()
   {
-    if(frameCount % 100 == 0)
+    if(frameCount % 300 == 0)
     {
       Particle newFromSplitting, randomParticle;
       randomParticle = particles.get((int)random(0, particles.size()-1));
@@ -102,6 +102,7 @@ class Round
         {
           points += 10;
           collisions.add(p);
+          sound.missileHit();
         }
       }
     }

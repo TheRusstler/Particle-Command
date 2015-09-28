@@ -18,6 +18,11 @@ class SoundEffect
     playFile("sounds/missile.mp3");
   }
   
+  void missileHit()
+  {
+    playFile("sounds/missile_hit.wav");
+  }
+  
   void explosion()
   {
     playFile("sounds/explosion.wav");

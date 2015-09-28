@@ -120,7 +120,3 @@ void mousePressed()
       break;
   }
 }
-
-void mouseReleased() 
-{
-}
