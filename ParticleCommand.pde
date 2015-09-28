@@ -1,7 +1,6 @@
 import ddf.minim.*;
 
-//final int DELAY_BETWEEN_ROUNDS = 120;
-final int DELAY_BETWEEN_ROUNDS = 180;
+final int DELAY_BETWEEN_ROUNDS = 60 * 2;
 
 Visualise visualise;
 SoundEffect sound;

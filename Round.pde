@@ -7,7 +7,8 @@ class Round
   
   int number, missilesRemaining;
   ArrayList<Particle> particles;
-  ArrayList<Missile> missiles;
+  ArrayList<Missile> missiles; 
+  ArrayList<Bomber> bombers;
   
   public Round(int number) 
   {
@@ -68,7 +69,12 @@ class Round
       randomParticle = particles.get((int)random(0, particles.size()-1));
       newFromSplitting = randomParticle.split();
       particles.add(newFromSplitting);
-      sound.particleSplit();
+      
+      // Make sound if split is visible
+      if(newFromSplitting.position.y > 0)
+      {
+        sound.particleSplit();
+      }
     }
   }
   
