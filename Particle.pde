@@ -1,6 +1,6 @@
 class Particle 
 {
-  final static float DRAG = .998f;
+  final static float DRAG = .996f;
   final float diameter;
   float r, g, b;
   
@@ -11,7 +11,7 @@ class Particle
   Particle(int round, float diameter, int startDelay)
   { 
     this.round = round;
-    this.gravity = new PVector(0f, 0.005f);
+    this.gravity = new PVector(0f, 0.008f);
     this.diameter = diameter;
     this.startDelay = startDelay;
     this.r = random(50, 255);
@@ -74,11 +74,11 @@ class Particle
     int x;
     float xVelocity, yVelocity, roundVelocityMultiplier;
     
-    roundVelocityMultiplier = 1 + round/10.0;
+    roundVelocityMultiplier = 1 + round/5.0;
     
     x = (int)random(5, width - 5);
-    xVelocity = random(0, 1.5*roundVelocityMultiplier);
-    yVelocity = random(0, 0.8*roundVelocityMultiplier);
+    xVelocity = random(0.5, 1*roundVelocityMultiplier);
+    yVelocity = random(0, 1.5*roundVelocityMultiplier);
     
     // Choose xVelocity direction according to starting half of screen
     if(x < width/2 && xVelocity < 0 || x > width/2 && xVelocity > 0) 

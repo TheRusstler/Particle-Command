@@ -16,7 +16,7 @@ class Round
     this.missiles = new ArrayList<Missile>();
     this.bombers = getBombers();
     this.particles = getParticles();
-    this.missilesRemaining = (int) (particles.size() * 2.5);
+    this.missilesRemaining = (int) (particles.size() * 2);
   }
   
   void update() 
@@ -204,6 +204,7 @@ class Round
     ArrayList<Particle> particles = new ArrayList<Particle>();
     float roundVelocityMultiplier = 1 + number/10.0;
     int numberOfParticles = INITIAL_PARTICLES + (number-1) * ROUND_PARTICLE_INCREASE;
+    
     int startDelay;
     float diameter;
     
@@ -224,7 +225,7 @@ class Round
     
     for(int i=0; i < number-1; i++)
     {
-      delay = i * 300;
+      delay = i * 300 + (int)random(-150, 150);
       bombers.add(new Bomber(delay));
     }
     

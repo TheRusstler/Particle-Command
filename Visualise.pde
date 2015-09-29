@@ -66,7 +66,7 @@ class Visualise
       
     if(round > 1 && timer < DELAY_BETWEEN_ROUNDS)
     {
-      text("ROUND " + round + " COMPLETE!", width/2, height/2 -30);
+      text("ROUND " + (round-1) + " COMPLETE!", width/2, height/2 -30);
       textSize(20);
       text(points + " POINTS", width/2, height/2 +30);
     }
