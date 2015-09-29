@@ -1,16 +1,15 @@
 class Visualise 
 {
-  PImage world, city;
+  PImage world, city, bomber;
   public Visualise()
   {
     world = loadImage("images/world.jpg");
     city = loadImage("images/city.jpg");
+    bomber = loadImage("images/bomber.png");
   }
   
   void cities(ArrayList<City> cities)
   {
-    stroke(166);
-    fill(166,0,0);
     for(City c : cities)
     {
       image(city, c.xMin, c.yMin);
@@ -38,12 +37,10 @@ class Visualise
   
   void bombers(ArrayList<Bomber> bombers)
   {
-    stroke(255, 0, 0);
-    fill(255, 0, 0);
-    
     for(Bomber b : bombers)
     {
-      rect(b.position.x, b.position.y, 50, 50);
+      image(bomber, b.xMin, b.yMin);
+      System.out.println(b.xMin +" " + b.yMin);
     }
   }
   

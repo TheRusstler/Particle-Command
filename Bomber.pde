@@ -1,14 +1,12 @@
-class Bomber
+class Bomber extends Block
 {
   int startDelay;
   boolean started;
-  PVector position, velocity;
   
   public Bomber(int delay)
   {
+    super(width + 50, 50, 40, 25, new PVector(-1, 0));
     this.startDelay = delay;
-    velocity = new PVector(-1, 0);
-    position = new PVector(width + 50, 50);
   }
   
   void bomb()
@@ -17,7 +15,7 @@ class Bomber
     Particle p;
     
     p = new Particle(round.number, 10, 0);
-    pos = new PVector(position.x, position.y + 50);
+    pos = new PVector(position.x, position.y + blockHeight/2);
     vel = new PVector(0, 1);
     p.setMotion(pos, vel);
     p.r = 0;
@@ -29,6 +27,7 @@ class Bomber
   
   void integrate() 
   { 
+    super.integrate();
     if(started)
     {
       position.add(velocity); 

@@ -16,7 +16,7 @@ class Round
     this.missiles = new ArrayList<Missile>();
     this.bombers = getBombers();
     this.particles = getParticles();
-    this.missilesRemaining = (int) (particles.size() * 1.7);
+    this.missilesRemaining = (int) (particles.size() * 2.5);
   }
   
   void update() 
@@ -39,6 +39,7 @@ class Round
     removeGroundedParticles();
     removeExplodedMissiles();
     detectMissileCollisions();
+    detectBomberCollisions();
     detectCityCollisions();
     splitParticles();
     
@@ -87,10 +88,12 @@ class Round
   ArrayList<Bomber> getBombers()
   {
     ArrayList<Bomber> bombers = new ArrayList<Bomber>();
-    //if(number > 1)
-    //{
-      bombers.add(new Bomber((int)random(50, 300)));
-    //}
+    
+    for(int i=0; i<number-1; i++)
+    {
+      bombers.add(new Bomber((int)random(50, 600)));
+    }
+    
     return bombers;
   }
   
@@ -132,6 +135,26 @@ class Round
     
     particles.removeAll(collisions);
   }
+  
+  void detectBomberCollisions()
+  {
+    List<Bomber> collisions = new ArrayList<Bomber>();
+    
+    for(Bomber b : bombers)
+    {
+      for(Missile m : missiles)
+      {
+        if(b.isHit(m.position, m.diameter/2))
+        {
+          points += 100;
+          collisions.add(b);
+          sound.missileHit();
+        }
+      }
+    }
+    
+    bombers.removeAll(collisions);
+  }
 
   void detectCityCollisions()
   {
@@ -143,7 +166,7 @@ class Round
     {
       for(City c : cities)
       {
-        if(c.isWithinBounds(p.position, p.diameter/2))
+        if(c.isHit(p.position, p.diameter/2))
         {
           cityCollisions.add(c);
           particleCollisions.add(p);
