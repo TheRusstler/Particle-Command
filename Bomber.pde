@@ -7,8 +7,23 @@ class Bomber
   public Bomber(int delay)
   {
     this.startDelay = delay;
-    velocity = new PVector(random(-2, -1), 0);
+    velocity = new PVector(-1, 0);
     position = new PVector(width + 50, 50);
+  }
+  
+  void bomb()
+  {
+    PVector pos, vel;
+    
+    Particle p = new Particle(round.number, 10, 0);
+    pos = new PVector(position.x, position.y + 50);
+    vel = new PVector(0, 1);
+    p.setMotion(pos, vel);
+    p.r = 0;
+    p.g = 255;
+    p.b = 0;
+    
+    round.particles.add(p);
   }
   
   void integrate() 
@@ -16,6 +31,10 @@ class Bomber
     if(started)
     {
       position.add(velocity); 
+      if(frameCount % 100 == 0)
+      {
+        bomb();
+      }
     }
     else
     {
