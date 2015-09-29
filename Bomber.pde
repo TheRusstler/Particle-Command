@@ -7,6 +7,12 @@ class Bomber extends Block
   {
     super(width + 50, 50, 40, 25, new PVector(-1, 0));
     this.startDelay = delay;
+    
+    if(random(-1,1) > 0)
+    {
+      position.x = -50;
+      velocity.x = -velocity.x;
+    }
   }
   
   void bomb()
