@@ -56,7 +56,7 @@ class Round
     {
       gameOver();
     }
-    else if(particles.size() == 0)
+    else if(particles.size() == 0 && bombers.size() == 0)
     {
       roundComplete();
     }
@@ -70,7 +70,7 @@ class Round
     {
       if(p.started)
       {
-        if(p.hasHitGround() || p.position.x <0 || p.position.x > width)
+        if(p.isOutOfBounds())
         {
           grounded.add(p);
         }
@@ -102,16 +102,16 @@ class Round
   {
     if(frameCount % 300 == 0)
     {
-      Particle newFromSplitting, randomParticle;
+      Particle randomParticle;
+      ArrayList<Particle> newFromSplitting;
       randomParticle = particles.get((int)random(0, particles.size()-1));
-      newFromSplitting = randomParticle.split();
-      particles.add(newFromSplitting);
       
-      // Make sound if split is visible
-      if(newFromSplitting.position.y > 0)
+      if(randomParticle.isVisible())
       {
+        newFromSplitting = randomParticle.split();
+        particles.addAll(newFromSplitting);
         sound.particleSplit();
-      }
+      }      
     }
   }
   
