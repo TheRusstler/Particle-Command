@@ -3,7 +3,7 @@ import java.util.*;
 class Round 
 {
   final int INITIAL_PARTICLES = 10;
-  final int ROUND_PARTICLE_INCREASE = 5;
+  final int ROUND_PARTICLE_INCREASE = 3;
   
   int number, missilesRemaining;
   ArrayList<Particle> particles;
@@ -83,18 +83,6 @@ class Round
         sound.particleSplit();
       }
     }
-  }
-  
-  ArrayList<Bomber> getBombers()
-  {
-    ArrayList<Bomber> bombers = new ArrayList<Bomber>();
-    
-    for(int i=0; i<number-1; i++)
-    {
-      bombers.add(new Bomber((int)random(50, 600)));
-    }
-    
-    return bombers;
   }
   
   void removeExplodedMissiles()
@@ -205,5 +193,19 @@ class Round
     }
     
     return particles;
+  }
+  
+  ArrayList<Bomber> getBombers()
+  {
+    ArrayList<Bomber> bombers = new ArrayList<Bomber>();
+    int delay;
+    
+    for(int i=0; i < number-1; i++)
+    {
+      delay = i * 300;
+      bombers.add(new Bomber(delay));
+    }
+    
+    return bombers;
   }
 }

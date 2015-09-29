@@ -40,7 +40,6 @@ class Visualise
     for(Bomber b : bombers)
     {
       image(bomber, b.xMin, b.yMin);
-      System.out.println(b.xMin +" " + b.yMin);
     }
   }
   

@@ -6,9 +6,9 @@ class Particle
   
   PVector position, velocity, gravity;
   int round, startDelay;
-  boolean started;
+  boolean started = false;
     
-  Particle(int round, float diameter, int startDelay) 
+  Particle(int round, float diameter, int startDelay)
   { 
     this.round = round;
     this.gravity = new PVector(0f, 0.003f);

@@ -1,7 +1,7 @@
 class Bomber extends Block
 {
   int startDelay;
-  boolean started;
+  boolean started = false;
   
   public Bomber(int delay)
   {
@@ -27,6 +27,7 @@ class Bomber extends Block
   
   void integrate() 
   { 
+    System.out.println(startDelay);
     super.integrate();
     if(started)
     {
@@ -47,6 +48,7 @@ class Bomber extends Block
     if(startDelay == 0)
     {
       started = true;
+      System.out.println("STARTED! " + frameCount);
     }
     else
     {
