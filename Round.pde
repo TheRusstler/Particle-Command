@@ -21,6 +21,19 @@ class Round
   
   void update() 
   {
+    integrateObjects();
+    removeCompleteParticles();
+    removeExplodedMissiles();
+    removeCompleteBombers();
+    detectMissileCollisions();
+    detectBomberCollisions();
+    detectCityCollisions();
+    splitParticles();
+    checkRoundState();
+  }
+  
+  void integrateObjects()
+  {
     for(Particle p : particles)
     {
       p.integrate();
@@ -35,15 +48,10 @@ class Round
     {
       b.integrate();
     }
-    
-    removeCompleteParticles();
-    removeExplodedMissiles();
-    removeCompleteBombers();
-    detectMissileCollisions();
-    detectBomberCollisions();
-    detectCityCollisions();
-    splitParticles();
-    
+  }
+  
+  void checkRoundState()
+  {
     if(cities.size() == 0)
     {
       gameOver();

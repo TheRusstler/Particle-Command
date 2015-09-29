@@ -16,7 +16,7 @@ class Bomber extends Block
     
     p = new Particle(round.number, 10, 0);
     pos = new PVector(position.x, position.y + blockHeight/2);
-    vel = new PVector(0, 1);
+    vel = new PVector(this.velocity.x/2, 1);
     p.setMotion(pos, vel);
     p.r = 0;
     p.g = 255;

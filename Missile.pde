@@ -10,8 +10,8 @@ class Missile
     diameter = 0;
   }
   
-  private int increasing = 40;
-  private int decreasing = 41;
+  private int increasing = 35;
+  private int decreasing = 36;
   void integrate()
   {
     if(exploded == false)
