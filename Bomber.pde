@@ -14,8 +14,9 @@ class Bomber
   void bomb()
   {
     PVector pos, vel;
+    Particle p;
     
-    Particle p = new Particle(round.number, 10, 0);
+    p = new Particle(round.number, 10, 0);
     pos = new PVector(position.x, position.y + 50);
     vel = new PVector(0, 1);
     p.setMotion(pos, vel);
