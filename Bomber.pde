@@ -47,7 +47,6 @@ class Bomber extends Block
     if(startDelay == 0)
     {
       started = true;
-      System.out.println("STARTED! " + frameCount);
     }
     else
     {

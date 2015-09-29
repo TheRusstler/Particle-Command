@@ -233,7 +233,7 @@ class Round
     
     for(int i=0; i < number-1; i++)
     {
-      delay = i * 300 + (int)random(-150, 150);
+      delay = (int)random(i*200, i*400);
       bombers.add(new Bomber(delay));
     }
     
