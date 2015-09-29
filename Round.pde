@@ -36,8 +36,9 @@ class Round
       b.integrate();
     }
     
-    removeGroundedParticles();
+    removeCompleteParticles();
     removeExplodedMissiles();
+    removeCompleteBombers();
     detectMissileCollisions();
     detectBomberCollisions();
     detectCityCollisions();
@@ -53,19 +54,40 @@ class Round
     }
   }
   
-  void removeGroundedParticles()
+  void removeCompleteParticles()
   {
     List<Particle> grounded = new ArrayList<Particle>();
     
     for(Particle p : particles)
     {
-      if(p.hasHitGround())
+      if(p.started)
       {
-        grounded.add(p);
+        if(p.hasHitGround() || p.position.x <0 || p.position.x > width)
+        {
+          grounded.add(p);
+        }
       }
     }
     
     particles.removeAll(grounded);
+  }
+  
+  void removeCompleteBombers()
+  {
+    List<Bomber> complete = new ArrayList<Bomber>();
+    
+    for(Bomber b : bombers)
+    {
+      if(b.started)
+      {
+        if(b.position.x < -50 || b.position.x > width + 50)
+        {
+          complete.add(b);
+        }
+      }
+    }
+    
+    bombers.removeAll(complete);
   }
   
   void splitParticles()

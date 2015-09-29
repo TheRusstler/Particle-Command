@@ -27,7 +27,6 @@ class Bomber extends Block
   
   void integrate() 
   { 
-    System.out.println(startDelay);
     super.integrate();
     if(started)
     {
