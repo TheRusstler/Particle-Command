@@ -201,7 +201,7 @@ class Round
   {
     if(missilesRemaining > 0)
     {
-      missiles.add(new Missile(x, y));
+      missiles.add(new Missile(new PVector(mouseX, mouseY)));
       sound.missile();
       missilesRemaining--;
     }

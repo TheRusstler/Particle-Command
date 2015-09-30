@@ -31,11 +31,20 @@ class Visualise
   }
   
   void missiles(ArrayList<Missile> missiles)
-  {
-    explosionBrush();
+  { 
     for(Missile m : missiles)
     {
-      ellipse(m.position.x, m.position.y, m.diameter, m.diameter);
+      if(m.reachedTarget())
+      {
+        explosionBrush();
+        ellipse(m.position.x, m.position.y, m.diameter, m.diameter);
+      }
+      else
+      {
+        stroke(255, 255, 255);
+        fill(255, 255, 255);
+        ellipse(m.position.x, m.position.y, 5, 5);
+      }
     }
   }
   
