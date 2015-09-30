@@ -85,7 +85,7 @@ class Visualise
     else 
     {
       textAlign(CENTER);
-      text("ROUND " + round.number+1, width/2, height/2);
+      text("ROUND " + (round.number+1), width/2, height/2);
     }
   }
   

@@ -100,7 +100,7 @@ class Round
   
   void splitParticles()
   {
-    if(frameCount % 300 == 0)
+    if(frameCount % 300 == 0 && particles.size() > 0)
     {
       Particle randomParticle;
       ArrayList<Particle> newFromSplitting;
@@ -233,7 +233,7 @@ class Round
     
     for(int i=0; i < number-1; i++)
     {
-      delay = (int)random(i*200, i*400);
+      delay = (int)random(i*200, i*300);
       bombers.add(new Bomber(delay));
     }
     
