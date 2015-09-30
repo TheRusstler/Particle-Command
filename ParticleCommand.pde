@@ -141,12 +141,18 @@ void rebuildCity()
     return;
   }
   
-//  for(int i=0; i<cities.size(); i++)
-//  {
-//    if(cities.get(i).number != i)
-//    {
-//      cities.add(i, new City(i));
-//      return;
-//    }
-//  }
+  boolean[] citiesSurvived = new boolean[City.MAX_CITIES];
+  for(City c : cities)
+  {
+    citiesSurvived[c.number] = true;
+  }
+  
+  for(int i=0; i<City.MAX_CITIES; i++)
+  {
+    if(citiesSurvived[i] == false)
+    {
+      cities.add(new City(i));
+      return;
+    }
+  }
 }
