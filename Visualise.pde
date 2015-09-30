@@ -63,26 +63,29 @@ class Visualise
     image(world, 0, height-120);
   }
   
-  void betweenRounds(int round, int points)
+  void betweenRounds(int points)
   {
     randomBrush();
     textSize(32);
       
-    if(round > 1 && timer < DELAY_BETWEEN_ROUNDS)
+    if(round.number > 0 && timer < DELAY_BETWEEN_ROUNDS)
     {
-      text("ROUND " + (round-1) + " COMPLETE!", width/2, height/2 -30);
+      text("ROUND " + round.number + " COMPLETE!", width/2, 200);
       textSize(20);
-      text(points + " POINTS", width/2, height/2 +30);
+      text(points + " POINTS", width/2, 270);
+      
+      text("Cities bonus: +" + cities.size() * CITY_SURVIVAL_BONUS, width/2, 350);
+      text("Missiles bonus: +" + round.missilesRemaining * MISSILE_UNUSED_BONUS, width/2, 390);
       
       if(cities.size() < City.MAX_CITIES)
       {
-        text("1 CITY REBUILT!", width/2, height/2 +100);
+        text("1 CITY REBUILT!", width/2, height/2 +150);
       }
     }
     else 
     {
       textAlign(CENTER);
-      text("ROUND " + round, width/2, height/2);
+      text("ROUND " + round.number+1, width/2, height/2);
     }
   }
   

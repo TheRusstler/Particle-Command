@@ -1,6 +1,8 @@
 import ddf.minim.*;
 
-final int DELAY_BETWEEN_ROUNDS = 60 * 3;
+final int DELAY_BETWEEN_ROUNDS = 60 * 6;
+final int CITY_SURVIVAL_BONUS = 100;
+final int MISSILE_UNUSED_BONUS = 10;
 
 Visualise visualise;
 SoundEffect sound;
@@ -47,7 +49,7 @@ void draw()
       break;
       
     case GameState.BetweenRounds:
-      visualise.betweenRounds(round.number + 1, points);
+      visualise.betweenRounds(points);
       betweenRoundsTimerTick();
       break;
       
@@ -87,9 +89,19 @@ void betweenRoundsTimerTick()
   if(timer == 0) 
   {
     rebuildCity();
+    endOfRoundBonusPoints();
     startNextRound();
   }
   timer--;
+}
+
+void endOfRoundBonusPoints()
+{
+  if(round.number > 0)
+  {
+    points += cities.size() * CITY_SURVIVAL_BONUS;
+    points += round.missilesRemaining * MISSILE_UNUSED_BONUS;
+  }
 }
 
 void gameOver()
@@ -129,13 +141,12 @@ void rebuildCity()
     return;
   }
   
-  for(int i=0; i<cities.size(); i++)
-  {
-    if(cities.get(i).number != i+1)
-    {
-      cities.add(i, new City(i+1));
-      System.out.println("Rebuilt city: " + i);
-      return;
-    }
-  }
+//  for(int i=0; i<cities.size(); i++)
+//  {
+//    if(cities.get(i).number != i)
+//    {
+//      cities.add(i, new City(i));
+//      return;
+//    }
+//  }
 }

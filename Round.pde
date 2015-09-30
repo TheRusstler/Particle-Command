@@ -164,7 +164,7 @@ class Round
       {
         if(b.isHit(m.position, m.diameter/2))
         {
-          points += 100;
+          points += 50;
           collisions.add(b);
           sound.missileHit();
         }
