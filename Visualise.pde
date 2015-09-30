@@ -1,3 +1,7 @@
+/*
+ * Visualise draws objects on screen
+ */
+
 class Visualise 
 {
   PImage world, city, bomber;

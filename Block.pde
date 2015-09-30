@@ -1,3 +1,7 @@
+/*
+ * Block is a rectangular object with collision detection
+ */
+
 abstract class Block
 {
   final int blockWidth, blockHeight;
