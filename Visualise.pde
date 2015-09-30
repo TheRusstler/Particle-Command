@@ -73,6 +73,11 @@ class Visualise
       text("ROUND " + (round-1) + " COMPLETE!", width/2, height/2 -30);
       textSize(20);
       text(points + " POINTS", width/2, height/2 +30);
+      
+      if(cities.size() < City.MAX_CITIES)
+      {
+        text("1 CITY REBUILT!", width/2, height/2 +100);
+      }
     }
     else 
     {

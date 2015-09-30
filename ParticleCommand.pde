@@ -1,6 +1,6 @@
 import ddf.minim.*;
 
-final int DELAY_BETWEEN_ROUNDS = 60 * 2;
+final int DELAY_BETWEEN_ROUNDS = 60 * 3;
 
 Visualise visualise;
 SoundEffect sound;
@@ -59,10 +59,34 @@ void draw()
   }
 }
 
+void mousePressed()
+{
+    switch(state)
+  {
+    case GameState.NotStarted:
+      roundComplete();
+      break;
+      
+    case GameState.InRound:
+      round.fireMissile(mouseX, mouseY);
+      break;
+      
+    case GameState.BetweenRounds:
+      timer = 0;
+      break;
+      
+    case GameState.Over:
+      setup();
+      roundComplete();
+      break;
+  }
+}
+
 void betweenRoundsTimerTick()
 {
   if(timer == 0) 
   {
+    rebuildCity();
     startNextRound();
   }
   timer--;
@@ -98,25 +122,20 @@ ArrayList<City> createCities()
   return cities;
 }
 
-void mousePressed()
+void rebuildCity()
 {
-    switch(state)
+  if(cities.size() == City.MAX_CITIES)
   {
-    case GameState.NotStarted:
-      roundComplete();
-      break;
-      
-    case GameState.InRound:
-      round.fireMissile(mouseX, mouseY);
-      break;
-      
-    case GameState.BetweenRounds:
-      timer = 0;
-      break;
-      
-    case GameState.Over:
-      setup();
-      roundComplete();
-      break;
+    return;
+  }
+  
+  for(int i=0; i<cities.size(); i++)
+  {
+    if(cities.get(i).number != i+1)
+    {
+      cities.add(i, new City(i+1));
+      System.out.println("Rebuilt city: " + i);
+      return;
+    }
   }
 }
