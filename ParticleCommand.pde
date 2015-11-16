@@ -1,6 +1,6 @@
 import ddf.minim.*;
 
-final int DELAY_BETWEEN_ROUNDS = 60 * 6;
+final int DELAY_BETWEEN_ROUNDS = 60 * 4;
 final int CITY_SURVIVAL_BONUS = 100;
 final int MISSILE_UNUSED_BONUS = 10;
 

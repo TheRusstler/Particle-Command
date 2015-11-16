@@ -3,7 +3,7 @@ import java.util.*;
 class Round 
 {
   final int INITIAL_PARTICLES = 10;
-  final int ROUND_PARTICLE_INCREASE = 3;
+  final int ROUND_PARTICLE_INCREASE = 5;
   
   int number, missilesRemaining;
   ArrayList<Particle> particles;
@@ -16,7 +16,7 @@ class Round
     this.missiles = new ArrayList<Missile>();
     this.bombers = getBombers();
     this.particles = getParticles();
-    this.missilesRemaining = (int) (particles.size() * 2);
+    this.missilesRemaining = (int) (particles.size() * 1.7);  
   }
   
   void update() 
@@ -30,7 +30,7 @@ class Round
     detectCityCollisions();
     splitParticles();
     checkRoundState();
-  }
+  }  
   
   void integrateObjects()
   {
@@ -233,7 +233,7 @@ class Round
     
     for(int i=0; i < number-1; i++)
     {
-      delay = (int)random(i*200, i*300);
+      delay = (int)random(i*200, i*250);
       bombers.add(new Bomber(delay));
     }
     
